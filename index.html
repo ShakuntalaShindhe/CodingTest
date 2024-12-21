@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentt</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h2>Pay Role Management</h2>
+        <p>Enter the bill amount and cash given by the customer and know the<br> minimum number of notes to return</p>
+        <label for="billAmount">Enter The Bill Amount:</label>
+        <input type="number" id="billAmount" placeholder="ENter the Bill Amount..." /> <br>
+        <label for="cashGiven">Enter The Cash Given:</label>
+        <input type="number" id="cashAmount" placeholder="Enter the Cash amount..." /><br>
+        <button id="checkBtn" class="btn">Check</button>
+        <p id="error"></p>
+        <h3>Return Change</h3>
+        <table>
+            <tr class="Notes_rows">
+                <th class="Notes_Row">No.of Notes</th>
+                <td class="rows" id="note2000"></td>
+                <td class="rows" id="note1000"></td>
+                <td class="rows" id="note500"></td>
+                <td class="rows" id="note200"></td>
+                <td class="rows" id="note100"></td>
+                <td class="rows" id="note50"></td>
+                <td class="rows" id="note20"></td>
+                <td class="rows" id="note10"></td>
+                <td class="rows" id="note5"></td>
+                <td class="rows" id="note1"></td>
+            </tr>
+            <tr class="Cash_Rows">
+                <th class="Cash_Row">Notes:</th>
+                <td class="row">2000</td>
+                <td class="row">1000</td>
+                <td class="row">500</td>
+                <td class="row">200</td>
+                <td class="row">100</td>
+                <td class="row">50</td>
+                <td class="row">20</td>
+                <td class="row">10</td>
+                <td class="row">5</td>
+                <td class="row">1</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var billAmount = document.getElementById('billAmount');
+        var cashAmount = document.getElementById('cashAmount');
+        var checkBtn = document.getElementById('checkBtn');
+        var errorMessage = document.getElementById('error');
+        let notes = [2000, 1000, 500, 200, 100, 50, 20, 10, 5, 1];
+
+        function handleErrors(error) {
+            errorMessage.style.display = 'block';
+            errorMessage.innerHTML = error;
+        }
+
+        function clearErrors() {
+            errorMessage.style.display = 'none';
+        }
+
+        checkBtn.addEventListener('click', clickHandler);
+
+        function clickHandler() {
+            clearErrors();
+            var billValue = parseFloat(billAmount.value);
+            var cashValue = parseFloat(cashAmount.value);
+
+            if (billValue < 0 || cashValue < 0) {
+                handleErrors("Please enter positive values.");
+                return;
+            }
+
+            if (cashValue < billValue) {
+                handleErrors("Cash given should be greater than or equal to the bill amount.");
+                return;
+            }
+
+            var returnChange = cashValue - billValue;
+            calculateChange(returnChange);
+        }
+
+        function calculateChange(returnChange) {
+            var noteItems = [];
+            for (var i = 0; i < notes.length; i++) {
+                noteItems.push(document.getElementById('note' + notes[i]));
+            }
+            noteItems.forEach(item => item.innerHTML = '');
+
+            notes.forEach((note, index) => {
+                var noteCount = Math.floor(returnChange / note);
+                returnChange -= noteCount * note;
+                noteItems[index].innerHTML = noteCount;
+            });
+        }
+    </script>
+</body>
+</html>

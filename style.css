@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+   width: 40%;
+    height: 80vh;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1);
+    margin: auto;
+    
+}
+.container h2{
+    text-align: center;
+    font-size: 2rem;
+}
+.container p{
+    text-align: center;
+    color: rgb(207, 200, 200);
+}
+.container label {
+    margin-left: 100px ;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.container input{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 40%;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+.container .btn{
+    margin-left: 100px;
+    width: 70%;
+    padding:10px 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(84, 84, 250, 0.678);
+    color: #fff;
+}
+ h3{
+    font-size: 2rem;
+    text-align: center;
+}
+.tableDetails{
+    border: 2px solid red;
+    height: 100px;
+}
+#error{
+    color: red;
+}
+table, th, td {
+    margin-left: 30px;
+    padding: 12px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+
+@media(max-width:768px){
+    .container{
+      width: 80%;
+    }   
+}
+
